@@ -186,15 +186,8 @@ button:active{transform:translateY(1px)}
 #md .mb .doc{background:#fff;box-shadow:0 4px 18px #10274416;border-radius:2px;margin:0 auto 20px}
 @media(max-width:1000px){.wiz-steps{grid-template-columns:repeat(3,minmax(0,1fr))}.wiz-step .wiz-label{font-size:12px}}
 @media(max-width:620px){#stepper{padding:15px;margin-left:0;margin-right:0}.wiz-head{gap:8px}.wiz-title{font-size:18px}.wiz-steps{grid-template-columns:repeat(2,minmax(0,1fr))}.wiz-step{padding:8px}.wiz-review-list{grid-template-columns:1fr}.wiz-actions{align-items:stretch;flex-direction:column}.wiz-actions .wiz-right{width:100%}.wiz-actions .wiz-right button{flex:1}#main{padding-left:12px;padding-right:12px}}
-@media print{#stepper,#forms,#tb,#bar,#side,#hd{display:none!important}.wiz-hide{display:block!important}#main{padding:0!important;margin:0!important}.doc{display:block!important}.dh{display:none!important}}
+@media print{#stepper,#forms,#tb,#bar,#side,#hd{display:none!important}.wiz-hide{display:block!important}#main{padding:0!important;margin:0!important}.doc{display:block!important}.dh{display:block!important}}
 @media print{.cell{background:none!important;border:0!important}}
-</style>
-<style id="print-form-only">@media print{.dh,#stepper,#wizard-review,#hd,#bar,#tb,#forms,#s5,#md,#side{display:none!important}}</style>
-<style id="thai-justify-fix">
-.jz{font-size:0!important;letter-spacing:0!important;word-spacing:0!important}
-.jlock{display:inline-block;height:0;vertical-align:baseline}
-#docs-print{position:absolute;left:-99999px;top:0;width:210mm;visibility:hidden;pointer-events:none}
-@media print{body.jzp #docs{display:none!important}#docs-print{position:static!important;left:auto!important;width:auto!important;visibility:visible!important}}
 </style>
 <style id="no-side">#side{display:none!important}#main{margin-left:0!important}#bar{left:0!important}</style>
 <style id="photo-tools">
@@ -215,7 +208,7 @@ button:active{transform:translateY(1px)}
 </style>
 
 </head><body>
-<header id="hd"></header><div id="side"></div><div id="main"><div id="forms"></div><div id="tb"><span>✍ จัดรูปแบบข้อความ</span><button data-cmd="bold"><b>B</b></button><button data-cmd="underline"><u>U</u></button><button data-cmd="italic"><i>I</i></button><button data-cmd="insertUnorderedList">• รายการ</button><button data-cmd="justifyLeft">⇤</button><button data-cmd="justifyCenter">↔</button><button data-cmd="justifyFull">☰</button><button data-cmd="undo">↶</button><button data-cmd="redo">↷</button><button data-fit1 title="บีบข้อความย่อหน้าที่เลือกให้อยู่ในบรรทัดเดียว (กดซ้ำเพื่อยกเลิก)">⇹ บีบบรรทัดเดียว</button><button data-fp title="คัดลอกรูปแบบจากข้อความที่เลือก แล้วไปคลุมข้อความอื่น — คลิก 1 ครั้งใช้ครั้งเดียว ดับเบิลคลิกใช้ต่อเนื่อง">🖌 คัดลอกรูปแบบ</button></div><div id="docs"></div><div id="s5"></div></div>
+<header id="hd"></header><div id="side"></div><div id="main"><div id="forms"></div><div id="tb"><span>✍ จัดรูปแบบข้อความ</span><button data-cmd="bold"><b>B</b></button><button data-cmd="underline"><u>U</u></button><button data-cmd="italic"><i>I</i></button><button data-cmd="insertUnorderedList">• รายการ</button><button data-cmd="justifyLeft">⇤</button><button data-cmd="justifyCenter">↔</button><button data-cmd="justifyFull">☰</button><button data-cmd="undo">↶</button><button data-cmd="redo">↷</button><button data-fp title="คัดลอกรูปแบบจากข้อความที่เลือก แล้วไปคลุมข้อความอื่น — คลิก 1 ครั้งใช้ครั้งเดียว ดับเบิลคลิกใช้ต่อเนื่อง">🖌 คัดลอกรูปแบบ</button></div><div id="docs"></div><div id="s5"></div></div>
 <div id="bar"><span>บันทึกร่างอัตโนมัติทุกครั้งที่แก้ไข</span><button id="sv">💾 บันทึกฉบับร่าง</button><button id="pv">🔍 ตรวจสอบ / พรีวิวเอกสาร</button><button id="ex2">✔ บันทึกข้อมูล / ออกรายงาน</button></div><div id="md"></div>
 <script>
 const MS='มกราคม กุมภาพันธ์ มีนาคม เมษายน พฤษภาคม มิถุนายน กรกฎาคม สิงหาคม กันยายน ตุลาคม พฤศจิกายน ธันวาคม'.split(' '),DS='อาทิตย์ จันทร์ อังคาร พุธ พฤหัสบดี ศุกร์ เสาร์'.split(' ');
@@ -243,37 +236,6 @@ function addCon(t){const np=t.closest('.np'),ce=np.closest('.ce'),ps=[...ce.quer
  const last=items.length?items[items.length-1].textContent:'';if(/\(\s*[๐-๙]/.test(last))n=String(n).replace(/[0-9]/g,d=>'๐๑๒๓๔๕๖๗๘๙'[d]);
  const st='text-align:justify;text-justify:inter-character;margin-top:6pt;';
  np.insertAdjacentHTML('beforebegin','<div class="g-con"><div class="p" style="'+st+'margin-right:4.8pt;text-indent:36pt">\t\t('+n+') '+CON_PH+'</div><div class="p" style="'+st+'text-indent:36pt">\t<b>มติที่ประชุม</b>   \tที่ประชุมรับทราบ และเห็นชอบ</div></div>');save()}
-const OTH_PH='ระบุเรื่องอื่นๆ';
-function agMati(ce,re6){const ps=[...ce.querySelectorAll('.p')];const b=ps.findIndex(e=>re6.test(e.textContent));if(b<0)return null;for(let i=b+1;i<ps.length;i++)if(/^\s*มติที่ประชุม/.test(ps[i].textContent))return {ps,b,m:i,mp:ps[i]};return null}
-const OTH_RE=/^\s*(ประธาน)?\s*[0-9๐-๙]+\s*\./,OTH_ST='text-align:justify;text-justify:inter-character;';
-function othSplit(p){/* รายการที่หัวข้อกับเนื้อหาอยู่ย่อหน้าเดียวกัน -> แยกเป็น 2 ย่อหน้า */
- const tx=p.textContent,i=tx.indexOf('ขอให้');if(i<6)return null;
- const w=document.createTreeWalker(p,NodeFilter.SHOW_TEXT);let n,pos=0,node=null,off=0;
- while(n=w.nextNode()){const l=n.nodeValue.length;if(i<pos+l){node=n;off=i-pos;break}pos+=l}
- if(!node)return null;const r=document.createRange();r.setStart(node,off);r.setEndAfter(p.lastChild);
- const body=document.createElement('div');body.className='p';body.appendChild(r.extractContents());
- const f=document.createTreeWalker(body,NodeFilter.SHOW_TEXT).nextNode();if(f)f.nodeValue=f.nodeValue.replace(/^[\s\u00a0]+/,'');
- const lt=[...p.childNodes].reverse().find(x=>x.nodeType==3);if(lt)lt.nodeValue=lt.nodeValue.replace(/[\s\u00a0]+$/,'');
- p.after(body);return body}
-function normOth(ce){const r=agMati(ce,/^\s*วาระที่\s*[6๖]/);if(!r)return false;let ch=false;
- const seg=r.ps.slice(r.b+1,r.m).filter(e=>!e.closest('.np')&&!e.closest('.g-oth'));
- const gs=[];let cur=null;
- seg.forEach(e=>{if(!e.textContent.trim()){e.remove();ch=true;return}if(OTH_RE.test(e.textContent)){cur=[e];gs.push(cur)}else if(cur&&cur[cur.length-1].nextElementSibling===e)cur.push(e);else cur=null});
- gs.forEach(g=>{const t=g[0];
-  t.querySelectorAll('b').forEach(x=>{if(!x.textContent.trim())x.remove()});
-  if(g.length==1){const b=othSplit(t);if(b)g.push(b)}
-  const wrap=document.createElement('div');wrap.className='g-oth';t.before(wrap);g.forEach(x=>wrap.appendChild(x));
-  const hasPres=!!t.querySelector('span[style*="inline-block"]');
-  if(hasPres){t.style.cssText=OTH_ST+'margin-top:3pt;margin-left:63.8pt;margin-right:-2.25pt;text-indent:-63.8pt'}
-  else{t.style.cssText=OTH_ST+'margin-top:3pt;margin-right:-2.25pt';const tw=document.createTreeWalker(t,NodeFilter.SHOW_TEXT),f=tw.nextNode(),f2=f&&!f.nodeValue.trim()?tw.nextNode():null;if(f2){f.nodeValue='\t\t    ';f2.nodeValue=f2.nodeValue.replace(/^[\s\u00a0]+/,'')}else if(f)f.nodeValue=f.nodeValue.replace(/^[\s\u00a0]+(?=[0-9๐-๙])/,'\t\t    ')}
-  g.slice(1).forEach(x=>{x.style.cssText=OTH_ST+'margin-left:72pt;margin-right:-2.25pt;text-indent:36pt'});
-  ch=true});
- return ch}
-function ensureOth(){const ce=document.querySelector('.ce[data-h=d3]');if(!ce)return;normOth(ce);if(ce.querySelector('[data-add="oth"]'))return;const r=agMati(ce,/^\s*วาระที่\s*[6๖]/);if(!r)return;r.mp.insertAdjacentHTML('beforebegin','<div class="np" contenteditable="false"><button data-add="oth">＋ เพิ่มเรื่องอื่นๆ</button></div>')}
-function addOth(t){const np=t.closest('.np'),ce=np.closest('.ce');
- const items=[...ce.querySelectorAll('.g-oth')];let n=items.length+1;
- const last=items.length?items[items.length-1].textContent:'';if(/[๐-๙]\s*\./.test(last.slice(0,40)))n=String(n).replace(/[0-9]/g,d=>'๐๑๒๓๔๕๖๗๘๙'[d]);
- np.insertAdjacentHTML('beforebegin','<div class="g-oth"><div class="p" style="'+OTH_ST+'margin-top:3pt;margin-right:-2.25pt">\t\t    '+n+'. '+OTH_PH+'</div><div class="p" style="'+OTH_ST+'margin-left:72pt;margin-right:-2.25pt;text-indent:36pt">รายละเอียด ...</div></div>');save()}
 function fixD3(){if(!M)return;let ch=false;const D='๐๑๒๓๔๕๖๗๘๙';
  const ce=document.querySelector('.ce[data-h=d3]');
  [...document.querySelectorAll('.ce[data-h=d1],.ce[data-h=d3]')].forEach(c=>c.querySelectorAll('.p').forEach(q=>{if(!/^\s*วาระที่/.test(q.textContent))return;const w=document.createTreeWalker(q,NodeFilter.SHOW_TEXT);let n;while(n=w.nextNode()){const v=n.nodeValue.replace(/(วาระที่\s*)([0-9๐-๙]+)/,(a,b,c)=>b+T(c.replace(/[๐-๙]/g,d=>D.indexOf(d))));if(v!==n.nodeValue){n.nodeValue=v;ch=true}}}));
@@ -299,7 +261,7 @@ function fixD3(){if(!M)return;let ch=false;const D='๐๑๒๓๔๕๖๗๘�
   M.fx6=1}
  if(ch)save()}
 function render(){if(M.h)for(const q in M.h)if(typeof M.h[q]=='string')M.h[q]=M.h[q].replace(/\\t\\t(?=\s*\* ผลการปฏิบัติงาน)/g,'');DOCS[0]=fixDL(DOCS[0],'ld1');DOCS[2]=fixDL(DOCS[2],'ld2');if(M.h&&M.h.d0)M.h.d0=fixDL(M.h.d0,'ld1');if(M.h&&M.h.d2)M.h.d2=fixDL(M.h.d2,'ld2');$('#docs').innerHTML=DOCS.map((h,i)=>{const ce=`<div class="ce" contenteditable data-h="d${i}">${M.h['d'+i]??h}</div>`;return `<div class="dh" id="dh${i}">${DT[i]}</div><div class="doc${i==4?' ph':''}">`+(i==4?`<table class="pht"><thead><tr><td>${ce}</td></tr></thead><tbody><tr><td><div id="phb" class="np"></div><div id="g"></div><div class="np"><button data-rows="1">＋ เพิ่มแถวรูป</button><button data-rows="-1">－ ลบแถวสุดท้าย</button></div></td></tr></tbody></table>`:ce)+'</div>'}).join('');
- $$('[data-sig]').forEach(i=>i.src=app.sig||SIG);ensureCon();ensureOth();fixD3();imgs();update();subnav()}
+ $$('[data-sig]').forEach(i=>i.src=app.sig||SIG);ensureCon();fixD3();imgs();update();subnav()}
 function update(){const v=calc(M.f);$$('[data-b]').forEach(e=>{const k=e.dataset.b;if(k=='ld1'||k=='ld2')e.innerHTML='<span style="visibility:hidden">'+T('00')+'</span> '+esc(v[k]||'');else e.textContent=v[k]??''});
  ['ppl','abs','gst'].forEach(k=>{const p=document.getElementById(k);if(p)p.innerHTML=lines(k).length?lines(k).map((x,i)=>{const[a,c]=x.split('|');return `<div class="pr"><span>${T(i+1)}. ${esc(a.trim())}</span><span>ตำแหน่ง ${esc((c||'').trim())}</span></div>`}).join(''):'<div class="p" style="margin-top:4pt">\t\t- ไม่มี -</div>'});
  const q=$('#fy');if(q){q.textContent=v.fy;$('#mm').textContent=v.monYr}hl();lk()}
@@ -359,30 +321,6 @@ function fpApply(){const s=getSelection();if(!fp||!s.rangeCount||s.isCollapsed)r
  FPC.forEach((k,i)=>{if(document.queryCommandState(k)!=fp.c[i])document.execCommand(k)});
  ps.forEach(p=>{p.style.textAlign=fp.a;p.style.marginLeft=fp.m;p.style.textIndent=fp.i});
  if(!fps)fp=null;fpUi();save()}
-
-function fit1Un(p){p.querySelectorAll('span.fit1').forEach(sp=>{while(sp.firstChild)sp.before(sp.firstChild);sp.remove()});p.normalize()}
-function fit1One(p){fit1Un(p);if(!p.textContent.trim())return 'empty';
- const sp=document.createElement('span');sp.className='fit1';sp.style.cssText='display:inline-block;white-space:pre;text-indent:0;transform-origin:left center;margin-right:-99999px';
- let first=p.firstChild;if(first&&first.nodeType==3){const m=first.nodeValue.match(/^[\t \u00a0]+/);if(m&&m[0].length<first.nodeValue.length){const lead=document.createTextNode(m[0]);first.nodeValue=first.nodeValue.slice(m[0].length);p.insertBefore(lead,first)}}
- const kids=[...p.childNodes].filter(n=>!(n.nodeType==3&&/^[\t \u00a0]+$/.test(n.nodeValue)&&n===p.firstChild&&p.childNodes.length>1&&n.nextSibling!==null&&false));
- let st=p.firstChild;if(st&&st.nodeType==3&&/^[\t \u00a0]+$/.test(st.nodeValue)&&st.nextSibling)st=st.nextSibling;
- const mv=[];for(let n=st;n;n=n.nextSibling)mv.push(n);
- st.before(sp);mv.forEach(n=>sp.appendChild(n));
- if(sp.lastChild&&sp.lastChild.nodeType==3)sp.lastChild.nodeValue=sp.lastChild.nodeValue.replace(/[\s\u00a0]+$/,'');
- const cs=getComputedStyle(p),need=sp.offsetWidth,pr=p.getBoundingClientRect(),k=p.offsetWidth?pr.width/p.offsetWidth:1,left=(sp.getBoundingClientRect().left-pr.left)/(k||1);
- const avail=p.clientWidth-(parseFloat(cs.paddingRight)||0)-left;
- let sc=Math.floor(avail/need*1000)/1000-.004;
- if(!(need>0)||sc>=1){fit1Un(p);return 'fits'}
- sc=Math.max(.3,sc);sp.style.transform='scaleX('+sc+')';sp.style.marginRight='-'+Math.ceil(need*(1-sc))+'px';
- return sc<.72?'tight':'ok'}
-function fit1(){const s=getSelection();if(!s.rangeCount)return alert('คลิกในย่อหน้าที่ต้องการบีบก่อนนะคะ');const r=s.getRangeAt(0);
- const ps=$$('#docs .ce .p').filter(p=>r.intersectsNode(p)&&!(!r.collapsed&&r.endContainer===p&&r.endOffset==0)&&!p.querySelector('.p'));
- if(!ps.length)return alert('คลิกในย่อหน้าที่ต้องการบีบก่อนนะคะ');
- if(ps.every(p=>p.querySelector('span.fit1'))){ps.forEach(fit1Un);save();return}
- const res=ps.map(fit1One);save();
- if(res.includes('tight'))alert('ข้อความยาวมาก บีบแล้วตัวอักษรค่อนข้างแคบ ลองตัดข้อความให้สั้นลงเพื่อให้อ่านง่ายขึ้นนะคะ');
- else if(res.every(x=>x=='fits'))alert('ย่อหน้านี้อยู่ในบรรทัดเดียวอยู่แล้วค่ะ')}
-document.addEventListener('mousedown',e=>{if(e.target.closest('[data-fit1]'))e.preventDefault()});
 async function open(id){if(M)await flush();ust=[];app.cur=id;M=app.list[id];side();render();wizardInit();await flush()}
 
 const WIZ_STEPS=[
@@ -439,8 +377,7 @@ document.addEventListener('click',async e=>{const t=e.target,id=t.id;
  else if(t.closest('[data-sn]')){AG[t.closest('[data-sn]').dataset.sn]?.scrollIntoView({behavior:'smooth',block:'center'})}
  else if(t.closest('.dh')){const h=t.closest('.dh');h.classList.toggle('cl');h.nextElementSibling.classList.toggle('cl')}
  else if(t.dataset.cmd){document.execCommand(t.dataset.cmd)}
- else if(t.closest('[data-fit1]')){fit1()}
-  else if(t.closest('[data-fp]')){if(fp){fp=null;fps=false;fpUi()}else fpOn(false)}
+ else if(t.closest('[data-fp]')){if(fp){fp=null;fps=false;fpUi()}else fpOn(false)}
  else if(t.closest('[data-pt]')){ptk=t.closest('[data-pt]').dataset.pt;$('#s2').outerHTML=f2()}
  else if(t.dataset.pa!==undefined){M.f[ptk]=lines(ptk).concat(' | ').join('\n');$('#s2').outerHTML=f2();$$('#ptb input').filter((_,i)=>i%2==0).pop()?.focus();update();save()}
  else if(t.dataset.pd!==undefined){const L=lines(ptk);L.splice(+t.dataset.pd,1);M.f[ptk]=L.join('\n');$('#s2').outerHTML=f2();update();save()}
@@ -458,7 +395,6 @@ document.addEventListener('click',async e=>{const t=e.target,id=t.id;
  else if(t.closest('.cell')){at=+t.closest('.cell').dataset.i;fi.value='';fi.click()}
  else if(t.dataset.rows){rowsChg(+t.dataset.rows)}
  else if(t.dataset.add=='con'){addCon(t)}
-  else if(t.dataset.add=='oth'){addOth(t)}
   else if(t.dataset.add){const k=t.dataset.add,n=$$('.g-'+k).length+1;t.closest('.np').insertAdjacentHTML('beforebegin',(k=='act'?ACT_T:RES_T).replaceAll('@N@',n));save()}
  else if(id=='nx'){await flush();const o=M.f,d=new Date(o.date+'T00:00'),n=new Date(d.getFullYear(),d.getMonth()+1,1);n.setDate(Math.min(d.getDate(),new Date(n.getFullYear(),n.getMonth()+1,0).getDate()));
   const nid='m'+Date.now();app.list[nid]=newMeet({...o,date:iso(n),prev:o.date,no:n.getMonth()==9?1:+o.no+1,ld1:'',ld2:''});await open(nid)}
@@ -500,81 +436,22 @@ function renum(){if(typeof M=='undefined'||!M)return;let ch=false;
   n=0;
   ce.querySelectorAll('.g-res').forEach(b=>{const p=b.querySelector('.p'),tn=p&&firstText(p);if(!tn)return;const m=tn.nodeValue.match(new RegExp('^(\\s*'+NUM+'\\.'+NUM+'\\.)('+NUM+')(\\s*ผลการปฏิบัติงาน\\s*เรื่องที่\\s*)('+NUM+')'));if(!m)return;n++;
    if(put(tn,m[1].length+m[2].length+m[3].length,m[4],n))ch=true;if(put(tn,m[1].length,m[2],n))ch=true});
- 
-   n=0;ce.querySelectorAll('.g-oth').forEach(b=>{const p=b.querySelector('.p');if(!p)return;const w=document.createTreeWalker(p,NodeFilter.SHOW_TEXT);let tn,m=null;while(tn=w.nextNode()){m=tn.nodeValue.match(new RegExp('^(\\s*)('+NUM+')(\\s*\\.)'));if(m)break}if(!m)return;n++;if(put(tn,m[1].length,m[2],n))ch=true});
-  });
+ });
  if(ch)save()}
 let tt;new MutationObserver(()=>{clearTimeout(tt);tt=setTimeout(renum,200)}).observe($('#docs'),{childList:true,subtree:true});
 addEventListener('beforeprint',renum);window.renumDocs=renum})();
 
 /* move activity / result blocks up-down with a floating toolbar (not saved into the document) */
-(()=>{const st=document.createElement('style');st.textContent='#mvb{position:fixed;z-index:60;display:none;flex-direction:column;gap:4px;padding:4px;background:#fffffff2;border:1px solid #176b87;border-radius:10px;box-shadow:0 3px 12px #0004;font:13px system-ui,sans-serif}#mvb button{margin:0;padding:4px 10px;font-size:13px;cursor:pointer}#mvb button:disabled{opacity:.4;cursor:default}@media print{#mvb{display:none!important}}';document.head.append(st);
-const bar=document.createElement('div');bar.id='mvb';bar.className='np';bar.innerHTML='<button data-mv="-1" title="เลื่อนข้อนี้ขึ้น">▲ ขึ้น</button><button data-mv="1" title="เลื่อนข้อนี้ลง">▼ ลง</button><button data-del="1" title="ลบข้อนี้" style="color:#b42318">🗑 ลบ</button>';document.body.append(bar);
-const SEL='.g-act,.g-res,.g-oth';let cur=null;
-const sib=(b,d)=>{let n=d<0?b.previousElementSibling:b.nextElementSibling;while(n&&!n.matches(b.classList.contains('g-act')?'.g-act':b.classList.contains('g-oth')?'.g-oth':'.g-res'))n=d<0?n.previousElementSibling:n.nextElementSibling;return n};
+(()=>{const st=document.createElement('style');st.textContent='#mvb{position:fixed;z-index:60;display:none;gap:6px;padding:4px;background:#fffffff2;border:1px solid #176b87;border-radius:10px;box-shadow:0 3px 12px #0004;font:13px system-ui,sans-serif}#mvb button{margin:0;padding:4px 10px;font-size:13px;cursor:pointer}#mvb button:disabled{opacity:.4;cursor:default}@media print{#mvb{display:none!important}}';document.head.append(st);
+const bar=document.createElement('div');bar.id='mvb';bar.className='np';bar.innerHTML='<button data-mv="-1" title="เลื่อนข้อนี้ขึ้น">▲ เลื่อนขึ้น</button><button data-mv="1" title="เลื่อนข้อนี้ลง">▼ เลื่อนลง</button>';document.body.append(bar);
+const SEL='.g-act,.g-res';let cur=null;
+const sib=(b,d)=>{let n=d<0?b.previousElementSibling:b.nextElementSibling;while(n&&!n.matches(b.classList.contains('g-act')?'.g-act':'.g-res'))n=d<0?n.previousElementSibling:n.nextElementSibling;return n};
 function find(){const s=getSelection();if(!s||!s.anchorNode)return null;const e=s.anchorNode.nodeType==1?s.anchorNode:s.anchorNode.parentElement;if(!e||!e.closest('#docs .ce'))return null;return e.closest(SEL)}
 function place(){cur=find();if(!cur){bar.style.display='none';return}const r=cur.getBoundingClientRect();if(r.bottom<60||r.top>innerHeight-40){bar.style.display='none';return}
  bar.style.display='flex';bar.querySelector('[data-mv="-1"]').disabled=!sib(cur,-1);bar.querySelector('[data-mv="1"]').disabled=!sib(cur,1);
- const w=bar.offsetWidth||90,h=bar.offsetHeight||110,pg=(cur.closest('.doc')||cur.closest('.ce')).getBoundingClientRect();
-  let L=pg.right+10;if(L+w>innerWidth-6)L=pg.left-w-10;if(L<6)L=innerWidth-w-6;/* วางนอกกระดาษ ไม่ทับข้อความ */
-  bar.style.left=L+'px';bar.style.top=Math.max(70,Math.min(r.top+6,innerHeight-h-70))+'px'}
+ const w=bar.offsetWidth||190;bar.style.left=Math.max(8,Math.min(innerWidth-w-8,r.right-w-8))+'px';bar.style.top=Math.max(8,Math.min(r.top+6,innerHeight-bar.offsetHeight-60))+'px'}
 bar.addEventListener('mousedown',e=>e.preventDefault());bar.addEventListener('pointerdown',e=>e.preventDefault());
-bar.addEventListener('click',e=>{if(!cur)return;
- if(e.target.closest('[data-del]')){if(!confirm('ลบข้อนี้?'))return;const x=cur,nx=sib(x,1)||sib(x,-1);cur=null;bar.style.display='none';x.remove();if(window.renumDocs)renumDocs();save();return}
- const b=e.target.closest('[data-mv]');if(!b)return;const d=+b.dataset.mv,o=sib(cur,d);if(!o)return;
+bar.addEventListener('click',e=>{const b=e.target.closest('[data-mv]');if(!b||!cur)return;const d=+b.dataset.mv,o=sib(cur,d);if(!o)return;
  if(d<0)o.before(cur);else o.after(cur);if(window.renumDocs)renumDocs();save();cur.scrollIntoView({block:'nearest',behavior:'smooth'});setTimeout(place,350);place()});
 document.addEventListener('selectionchange',place);document.addEventListener('scroll',place,true);addEventListener('resize',place)})();
-
-/* ---- จัดย่อหน้าชิดขอบภาษาไทย (ใช้เฉพาะตอนพรีวิว/พิมพ์ ไม่แตะข้อความที่แก้ไข) ---- */
-(()=>{
-const SEG=(typeof Intl!=='undefined'&&Intl.Segmenter)?new Intl.Segmenter('th',{granularity:'word'}):null;
-const ENDTH=/[\u0E01-\u0E3A\u0E45\u0E47-\u0E4E]$/, STARTTH=/^[\u0E01-\u0E2E\u0E40-\u0E44]/;
-const mkZ=()=>{const s=document.createElement('span');s.className='jz';s.textContent=' ';return s};
-function jz(root){
- if(!root)return;
- const ps=[...root.querySelectorAll('.p')].filter(p=>getComputedStyle(p).textAlign==='justify');
- /* 1) ล็อกความกว้างย่อหน้าบรรทัดแรก (แท็บ/เว้นวรรคหน้าบรรทัด) ไม่ให้ถูกยืดตอนจัดชิดขอบ */
- const old=ps.map(p=>p.style.textAlign);
- ps.forEach(p=>{p.style.textAlign='left'});
- const locks=[];
- ps.forEach(p=>{const n=p.firstChild;if(!n||n.nodeType!==3)return;const m=n.data.match(/^[\t ]+/);if(!m)return;
-  const r=document.createRange();r.setStart(n,0);r.setEnd(n,m[0].length);const w=r.getBoundingClientRect().width;
-  if(w>0)locks.push([n,m[0].length,w])});
- ps.forEach((p,i)=>{p.style.textAlign=old[i]});
- locks.forEach(([n,len,w])=>{const s=document.createElement('span');s.className='jlock';s.style.width=w+'px';n.data=n.data.slice(len);n.parentNode.insertBefore(s,n)});
- /* 2) ใส่ช่องว่างขนาดศูนย์ระหว่างคำไทย เพื่อให้ Chrome กระจายระยะได้ทุกบรรทัด + ลดช่องว่างซ้อนหลายตัว */
- ps.forEach(p=>{
-  const w=document.createTreeWalker(p,NodeFilter.SHOW_TEXT),nodes=[];let n;
-  while(n=w.nextNode()){
-   const pe=n.parentElement;
-   if(pe.closest('.jz,.jlock'))continue;
-   let skip=false;for(let e=pe;e&&e!==p;e=e.parentElement){if((e.style.display||'').indexOf('inline-block')>=0){skip=true;break}}
-   if(!skip)nodes.push(n)}
-  nodes.forEach(n=>{
-   const d=n.data.replace(/(\S) {2,}(?=\S)/g,'$1 ');
-   if(!SEG||!/[\u0E00-\u0E7F]/.test(d)){if(d!==n.data)n.data=d;return}
-   const segs=[...SEG.segment(d)].map(x=>x.segment),f=document.createDocumentFragment();let buf='';
-   segs.forEach((s,i)=>{buf+=s;const nx=segs[i+1];
-    if(nx!==undefined&&ENDTH.test(s)&&STARTTH.test(nx)){f.appendChild(document.createTextNode(buf));buf='';f.appendChild(mkZ())}});
-   if(buf)f.appendChild(document.createTextNode(buf));
-   n.parentNode.replaceChild(f,n)})
- })
-}
-window.__jz=jz;
-/* พรีวิว */
-if(typeof preview==='function'){const _pv=preview;preview=async function(){await _pv.apply(this,arguments);try{jz(document.querySelector('#md .mb'))}catch(e){console.error(e)}}}
-/* พิมพ์: ทำสำเนาเอกสารสำหรับพิมพ์ แล้วซ่อนต้นฉบับ (ต้นฉบับที่แก้ไขอยู่ไม่ถูกเปลี่ยน) */
-function dropClone(){const c=document.getElementById('docs-print');if(c)c.remove();document.body.classList.remove('jzp')}
-addEventListener('beforeprint',()=>{
- try{
-  dropClone();const d=document.getElementById('docs');if(!d)return;
-  const c=d.cloneNode(true);c.id='docs-print';
-  c.querySelectorAll('[id]').forEach(e=>e.removeAttribute('id'));
-  c.querySelectorAll('[contenteditable]').forEach(e=>e.removeAttribute('contenteditable'));
-  c.querySelectorAll('.cl,.wiz-hide').forEach(e=>e.classList.remove('cl','wiz-hide'));
-  d.after(c);jz(c);document.body.classList.add('jzp')
- }catch(e){console.error(e);dropClone()}
-});
-addEventListener('afterprint',dropClone);
-})();
 </script></body></html>
